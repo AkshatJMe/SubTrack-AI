@@ -1,0 +1,11 @@
+docker run --name auth_service -e MYSQL_DATABASE=auth -e MYSQL_USER=akshat -e MYSQL_PASSWORD=password -e MYSQL_ROOT_PASSWORD=rootpassword -p 3306:3306 -d mysql
+
+docker exec -it auth_service mysql -uroot -prootpassword
+
+DROP USER IF EXISTS 'akshat'@'%';
+
+CREATE USER 'akshat'@'%' IDENTIFIED BY 'password';
+
+GRANT ALL PRIVILEGES ON roomy.* TO 'akshat'@'%';
+
+FLUSH PRIVILEGES;

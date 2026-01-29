@@ -1,0 +1,148 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: "%"
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+      # Kafka listeners (internal + host)
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+      # Single-node dev settings
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "bash",
+          "-lc",
+          "kafka-topics --bootstrap-server localhost:9092 --list >/dev/null 2>&1 || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8081
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/auth
+      SPRING_DATASOURCE_USERNAME: akshat
+      SPRING_DATASOURCE_PASSWORD: password
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      JWT_SECRET: super-secret-256-bit-key-super-secret
+    ports:
+      - "8081:8081"
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8082
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/user_service
+      SPRING_DATASOURCE_USERNAME: akshat
+      SPRING_DATASOURCE_PASSWORD: password
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    ports:
+      - "8082:8082"
+
+  subscription-service:
+    build: ./subscription-service
+    container_name: subscription-service
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8083
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/subscription_service
+      SPRING_DATASOURCE_USERNAME: akshat
+      SPRING_DATASOURCE_PASSWORD: password
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    ports:
+      - "8083:8083"
+
+  notification-service:
+    build: ./notification-service
+    container_name: notification-service
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8084
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/notification_service
+      SPRING_DATASOURCE_USERNAME: akshat
+      SPRING_DATASOURCE_PASSWORD: password
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      # configure SMTP locally as needed
+      SPRING_MAIL_HOST: smtp.example.com
+      SPRING_MAIL_PORT: 587
+      SPRING_MAIL_USERNAME: user
+      SPRING_MAIL_PASSWORD: password
+    ports:
+      - "8084:8084"
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    depends_on:
+      - auth-service
+      - user-service
+      - subscription-service
+      - notification-service
+    environment:
+      SERVER_PORT: 8080
+      JWT_SECRET: super-secret-256-bit-key-super-secret
+    ports:
+      - "8080:8080"

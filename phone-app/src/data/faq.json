@@ -1,0 +1,311 @@
+{
+  "rootId": "q_root",
+  "nodes": {
+    "q_root": {
+      "id": "q_root",
+      "type": "question",
+      "prompt": "What do you need help with?",
+      "options": [
+        { "label": "Reduce my monthly spending", "nextId": "q_reduce_1" },
+        { "label": "A renewal surprised me", "nextId": "q_renewal_1" },
+        { "label": "I want to cancel a subscription", "nextId": "q_cancel_1" }
+      ]
+    },
+    "q_reduce_1": {
+      "id": "q_reduce_1",
+      "type": "question",
+      "prompt": "Which best describes the issue?",
+      "options": [
+        { "label": "I pay for too many services", "nextId": "q_reduce_2a" },
+        { "label": "One service is too expensive", "nextId": "q_reduce_2b" },
+        { "label": "I don’t know what I’m paying for", "nextId": "q_reduce_2c" }
+      ]
+    },
+    "q_reduce_2a": {
+      "id": "q_reduce_2a",
+      "type": "question",
+      "prompt": "Do you use most subscriptions weekly?",
+      "options": [
+        { "label": "Yes, I use them often", "nextId": "q_reduce_3a" },
+        { "label": "No, some are unused", "nextId": "q_reduce_3b" }
+      ]
+    },
+    "q_reduce_3a": {
+      "id": "q_reduce_3a",
+      "type": "question",
+      "prompt": "Would switching billing cycles help?",
+      "options": [
+        { "label": "I can switch some to yearly", "nextId": "q_reduce_4a" },
+        { "label": "No, mostly monthly", "nextId": "q_reduce_4b" }
+      ]
+    },
+    "q_reduce_4a": {
+      "id": "q_reduce_4a",
+      "type": "question",
+      "prompt": "Are you comfortable paying upfront to save long-term?",
+      "options": [
+        { "label": "Yes", "nextId": "a_reduce_yearly_yes" },
+        { "label": "Not right now", "nextId": "a_reduce_yearly_no" }
+      ]
+    },
+    "a_reduce_yearly_yes": {
+      "id": "a_reduce_yearly_yes",
+      "type": "answer",
+      "title": "Try yearly plans for key apps",
+      "body": "Pick 1–2 services you’re confident you’ll keep and switch them to yearly billing. You’ll reduce monthly cash-flow pressure and often save 10–20%.",
+      "tips": [
+        "Start with productivity tools you use daily",
+        "Avoid switching services you might cancel soon",
+        "Set a reminder 30 days before yearly renewals"
+      ]
+    },
+    "a_reduce_yearly_no": {
+      "id": "a_reduce_yearly_no",
+      "type": "answer",
+      "title": "Stay monthly and optimize usage",
+      "body": "If upfront payments aren’t ideal, keep monthly but pause or rotate services. For example, subscribe to one streaming app per month and switch next month."
+    },
+    "q_reduce_4b": {
+      "id": "q_reduce_4b",
+      "type": "question",
+      "prompt": "Do you have multiple services in the same category (e.g., streaming)?",
+      "options": [
+        { "label": "Yes", "nextId": "q_reduce_5b" },
+        { "label": "No", "nextId": "a_reduce_simple" }
+      ]
+    },
+    "q_reduce_5b": {
+      "id": "q_reduce_5b",
+      "type": "question",
+      "prompt": "Would you be okay rotating them month to month?",
+      "options": [
+        { "label": "Yes, rotate", "nextId": "a_reduce_rotate" },
+        { "label": "No, I want all", "nextId": "a_reduce_bundle" }
+      ]
+    },
+    "a_reduce_rotate": {
+      "id": "a_reduce_rotate",
+      "type": "answer",
+      "title": "Rotate subscriptions to cut costs",
+      "body": "Pause one service and use another for a month. Rotating keeps your spend low without feeling like you’re missing out.",
+      "tips": ["Pause services you haven’t opened in 14+ days", "Resume later with one tap"]
+    },
+    "a_reduce_bundle": {
+      "id": "a_reduce_bundle",
+      "type": "answer",
+      "title": "Look for bundles and family plans",
+      "body": "If you prefer keeping multiple services, check for bundles (streaming packs) or split costs via family plans where allowed."
+    },
+    "a_reduce_simple": {
+      "id": "a_reduce_simple",
+      "type": "answer",
+      "title": "Quick win: pause 1 low-value service",
+      "body": "Pick the least-used service and pause it for one billing cycle. If you don’t miss it, cancel it."
+    },
+    "q_reduce_2b": {
+      "id": "q_reduce_2b",
+      "type": "question",
+      "prompt": "Is the expensive service essential?",
+      "options": [
+        { "label": "Yes, I need it", "nextId": "q_reduce_3c" },
+        { "label": "Not really", "nextId": "a_reduce_cancel_expensive" }
+      ]
+    },
+    "q_reduce_3c": {
+      "id": "q_reduce_3c",
+      "type": "question",
+      "prompt": "Can you downgrade the plan?",
+      "options": [
+        { "label": "Yes, downgrade", "nextId": "a_reduce_downgrade" },
+        { "label": "No, only one plan", "nextId": "a_reduce_replace" }
+      ]
+    },
+    "a_reduce_downgrade": {
+      "id": "a_reduce_downgrade",
+      "type": "answer",
+      "title": "Downgrade to a cheaper tier",
+      "body": "Downgrading often preserves most features. Track usage for 7 days, then switch to the lowest plan that still fits."
+    },
+    "a_reduce_replace": {
+      "id": "a_reduce_replace",
+      "type": "answer",
+      "title": "Replace with a cheaper alternative",
+      "body": "If there’s only one plan, compare competitors. Switching one service can reduce your monthly total significantly."
+    },
+    "a_reduce_cancel_expensive": {
+      "id": "a_reduce_cancel_expensive",
+      "type": "answer",
+      "title": "Cancel the expensive service",
+      "body": "If it’s not essential, cancel and reassess in 30 days. You can always resubscribe later."
+    },
+    "q_reduce_2c": {
+      "id": "q_reduce_2c",
+      "type": "question",
+      "prompt": "Do you want to audit by category or by renewal date?",
+      "options": [
+        { "label": "By category", "nextId": "a_reduce_audit_category" },
+        { "label": "By renewal date", "nextId": "a_reduce_audit_renewals" }
+      ]
+    },
+    "a_reduce_audit_category": {
+      "id": "a_reduce_audit_category",
+      "type": "answer",
+      "title": "Audit by category",
+      "body": "Open Analytics and look for your top category. Reduce duplication there first—this has the biggest impact."
+    },
+    "a_reduce_audit_renewals": {
+      "id": "a_reduce_audit_renewals",
+      "type": "answer",
+      "title": "Audit upcoming renewals",
+      "body": "Start with renewals in the next 7 days. If you’re not using a service, pause or cancel before it renews."
+    },
+    "q_renewal_1": {
+      "id": "q_renewal_1",
+      "type": "question",
+      "prompt": "What happened?",
+      "options": [
+        { "label": "I forgot it was renewing", "nextId": "q_renewal_2a" },
+        { "label": "The price increased", "nextId": "q_renewal_2b" },
+        { "label": "I thought I cancelled", "nextId": "q_renewal_2c" }
+      ]
+    },
+    "q_renewal_2a": {
+      "id": "q_renewal_2a",
+      "type": "question",
+      "prompt": "Do you want reminders enabled?",
+      "options": [
+        { "label": "Yes, enable reminders", "nextId": "a_renewal_enable" },
+        { "label": "No, keep them off", "nextId": "a_renewal_off" }
+      ]
+    },
+    "a_renewal_enable": {
+      "id": "a_renewal_enable",
+      "type": "answer",
+      "title": "Enable renewal reminders",
+      "body": "Turn on renewal reminders in Profile → Preferences. The app will create local reminders for renewals within 7 days."
+    },
+    "a_renewal_off": {
+      "id": "a_renewal_off",
+      "type": "answer",
+      "title": "No worries",
+      "body": "You can keep reminders off. Tip: set a calendar reminder 2–3 days before renewals for important subscriptions."
+    },
+    "q_renewal_2b": {
+      "id": "q_renewal_2b",
+      "type": "question",
+      "prompt": "How do you want to respond to the price increase?",
+      "options": [
+        { "label": "Downgrade plan", "nextId": "a_renewal_downgrade" },
+        { "label": "Switch to alternative", "nextId": "a_renewal_switch" },
+        { "label": "Keep it for now", "nextId": "a_renewal_keep" }
+      ]
+    },
+    "a_renewal_downgrade": {
+      "id": "a_renewal_downgrade",
+      "type": "answer",
+      "title": "Downgrade the plan",
+      "body": "If the service offers tiers, downgrade. You’ll keep access while lowering your monthly spend."
+    },
+    "a_renewal_switch": {
+      "id": "a_renewal_switch",
+      "type": "answer",
+      "title": "Switch providers",
+      "body": "Compare alternatives and migrate. Update the subscription entry to track the new service."
+    },
+    "a_renewal_keep": {
+      "id": "a_renewal_keep",
+      "type": "answer",
+      "title": "Keep it, but review later",
+      "body": "Mark the next review date and reassess in 30 days. If usage is low, cancel."
+    },
+    "q_renewal_2c": {
+      "id": "q_renewal_2c",
+      "type": "question",
+      "prompt": "Do you still have access to the original account?",
+      "options": [
+        { "label": "Yes", "nextId": "a_renewal_check_cancel" },
+        { "label": "No", "nextId": "a_renewal_contact_support" }
+      ]
+    },
+    "a_renewal_check_cancel": {
+      "id": "a_renewal_check_cancel",
+      "type": "answer",
+      "title": "Verify cancellation status",
+      "body": "Log in to the service and confirm cancellation was completed. Some services require confirming via email or a final step."
+    },
+    "a_renewal_contact_support": {
+      "id": "a_renewal_contact_support",
+      "type": "answer",
+      "title": "Contact the service",
+      "body": "If you can’t access the original account, contact the service’s support and request help locating the subscription and cancelling."
+    },
+    "q_cancel_1": {
+      "id": "q_cancel_1",
+      "type": "question",
+      "prompt": "Why do you want to cancel?",
+      "options": [
+        { "label": "I don’t use it", "nextId": "q_cancel_2a" },
+        { "label": "It’s too expensive", "nextId": "q_cancel_2b" },
+        { "label": "I found an alternative", "nextId": "q_cancel_2c" }
+      ]
+    },
+    "q_cancel_2a": {
+      "id": "q_cancel_2a",
+      "type": "question",
+      "prompt": "Do you want to pause first to test?",
+      "options": [
+        { "label": "Yes, pause first", "nextId": "a_cancel_pause" },
+        { "label": "No, cancel now", "nextId": "a_cancel_now" }
+      ]
+    },
+    "a_cancel_pause": {
+      "id": "a_cancel_pause",
+      "type": "answer",
+      "title": "Pause it first",
+      "body": "Pause the subscription for one cycle. If you don’t miss it, cancel it permanently."
+    },
+    "a_cancel_now": {
+      "id": "a_cancel_now",
+      "type": "answer",
+      "title": "Cancel it",
+      "body": "Cancel from the service’s billing page. In the app, set status to Cancelled so your totals update immediately."
+    },
+    "q_cancel_2b": {
+      "id": "q_cancel_2b",
+      "type": "question",
+      "prompt": "Would you prefer downgrade or cancel?",
+      "options": [
+        { "label": "Downgrade", "nextId": "a_cancel_downgrade" },
+        { "label": "Cancel", "nextId": "a_cancel_now" }
+      ]
+    },
+    "a_cancel_downgrade": {
+      "id": "a_cancel_downgrade",
+      "type": "answer",
+      "title": "Downgrade first",
+      "body": "Try a cheaper plan for a month. If the value still isn’t there, cancel."
+    },
+    "q_cancel_2c": {
+      "id": "q_cancel_2c",
+      "type": "question",
+      "prompt": "Is migrating your data important?",
+      "options": [
+        { "label": "Yes, I need to migrate", "nextId": "a_cancel_migrate" },
+        { "label": "No, just switch", "nextId": "a_cancel_switch" }
+      ]
+    },
+    "a_cancel_migrate": {
+      "id": "a_cancel_migrate",
+      "type": "answer",
+      "title": "Migrate before cancelling",
+      "body": "Export your data/settings first (if available), then cancel. This prevents losing access unexpectedly."
+    },
+    "a_cancel_switch": {
+      "id": "a_cancel_switch",
+      "type": "answer",
+      "title": "Switch to the alternative",
+      "body": "Cancel the old subscription and add the new one to keep tracking accurate."
+    }
+  }
+}
+

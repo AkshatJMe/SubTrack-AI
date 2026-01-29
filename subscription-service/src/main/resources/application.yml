@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: subscription-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql:3306/subscription_service}
+    username: ${SPRING_DATASOURCE_USERNAME:akshat}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+
+kafka:
+  bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+  topics:
+    subscription-created: subscription.created
+    subscription-updated: subscription.updated
+    subscription-renewal-upcoming: subscription.renewal.upcoming
+
+security:
+  identity:
+    header-user-id: X-User-Id
+    header-authorization: Authorization
+
+subscriptions:
+  renewals:
+    # Used by the scheduled publisher (daily). API endpoint can override via query param.
+    upcoming-days-default: 7
+    # Daily at 00:10 UTC
+    cron: "0 10 0 * * *"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  level:
+    com.subtrack.subscription_service: INFO
+
+server:
+  port: ${SERVER_PORT:8083}
