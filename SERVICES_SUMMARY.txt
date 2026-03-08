@@ -1,0 +1,48 @@
+================================================================================
+                    SubTrack AI - PROJECT SUMMARY (CONCISE)
+================================================================================
+
+PROJECT OVERVIEW:
+SubTrack AI is a microservices-based subscription tracking platform built with
+Java Spring Boot services, React Native mobile, and MySQL database.
+
+CORE SERVICES:
+
+1. API GATEWAY - Central routing & load balancing for all requests
+2. AUTH SERVICE - User authentication, JWT tokens, RBAC, password reset
+3. USER SERVICE - Profile management, preferences, account settings
+4. SUBSCRIPTION SERVICE - Subscription CRUD, billing cycles, analytics, renewals
+5. NOTIFICATION SERVICE - Email, in-app, push notifications and alerts
+6. PHONE APP (React Native) - Mobile UI for auth, subscriptions, dashboard, profiles
+
+KEY FEATURES:
+✓ Microservices Architecture
+✓ JWT-based Authentication & Role-Based Access Control
+✓ Multi-channel Notifications (Email, In-app, Push)
+✓ Real-time Subscription Tracking & Analytics
+✓ Mobile-First React Native Application
+✓ Docker Containerization & Compose Orchestration
+✓ Database Migrations for version control
+✓ Event-Driven Ready Architecture
+
+TECHNOLOGY STACK:
+Backend: Java Spring Boot (Security, Data JPA, Cloud Gateway)
+Database: MySQL 8.0+ (User, Subscription, Notification tables)
+Mobile: React Native + TypeScript + Expo
+DevOps: Docker & Docker Compose
+
+ARCHITECTURE FLOW:
+Phone App → API Gateway → (Auth/User/Subscription/Notification Services) → MySQL
+Each service handles specific domain; Notifications triggered by subscription events.
+
+FUTURE ENHANCEMENT (LLD):
+→ Async Notification Processor: Automatically monitors subscription events,
+  triggers notifications based on business rules, and persists all data to
+  database without manual intervention for real-time, event-driven delivery.
+
+DEPLOYMENT:
+Run all services: docker-compose up -d
+View logs: docker-compose logs -f [service-name]
+Stop services: docker-compose down
+
+================================================================================

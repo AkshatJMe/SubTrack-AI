@@ -16,9 +16,10 @@ export function Screen({
       <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }}>
         <ScrollView
           contentContainerStyle={[
-            { padding: 16, paddingBottom: 28, backgroundColor: colors.bg },
+            { padding: 16, paddingBottom: 32, backgroundColor: colors.bg },
             contentContainerStyle,
           ]}
+          scrollEventThrottle={16}
         >
           {children}
         </ScrollView>

@@ -72,7 +72,7 @@ export function SubscriptionDetailScreen() {
               onPress={() =>
                 Alert.alert(
                   "Cancel?",
-                  "This marks the subscription as cancelled (local demo).",
+                  "This will cancel this subscription.",
                   [
                     { text: "Keep", style: "cancel" },
                     { text: "Cancel", style: "destructive", onPress: () => updateStatus(sub.id, "cancelled") },

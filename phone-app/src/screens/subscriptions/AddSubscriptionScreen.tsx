@@ -53,7 +53,7 @@ export function AddSubscriptionScreen() {
       renewalDate,
       category,
     });
-    Alert.alert("Saved", "Subscription added locally.");
+    Alert.alert("Saved", "Subscription added successfully.");
     nav.goBack();
   };
 
@@ -61,7 +61,7 @@ export function AddSubscriptionScreen() {
     <Screen scroll contentContainerStyle={{ gap: 14 }}>
       <View style={{ gap: 6 }}>
         <AppText style={{ fontSize: 22, fontWeight: "900" }}>Add subscription</AppText>
-        <MutedText>Manual entry only (no network calls).</MutedText>
+        <MutedText>Enter your subscription details.</MutedText>
       </View>
 
       <TextField

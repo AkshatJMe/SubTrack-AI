@@ -26,7 +26,7 @@ export function NotificationsScreen() {
     ];
     const pick = kinds[Math.floor(Math.random() * kinds.length)];
     addNotification({ ...pick, read: false });
-    Alert.alert("Generated", "A fake notification was added locally.");
+    Alert.alert("Generated", "A notification has been added.");
   };
 
   return (
@@ -34,12 +34,12 @@ export function NotificationsScreen() {
       <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
         <View style={{ gap: 4 }}>
           <AppText style={{ fontSize: 22, fontWeight: "900" }}>Notifications</AppText>
-          <MutedText>Stored locally (AsyncStorage).</MutedText>
+          <MutedText>Your subscription renewal notifications.</MutedText>
         </View>
       </View>
 
       <View style={{ flexDirection: "row", gap: 12 }}>
-        <PrimaryButton title="Generate fake" onPress={generateFake} style={{ flex: 1 }} />
+        <PrimaryButton title="Test notification" onPress={generateFake} style={{ flex: 1 }} />
         <PrimaryButton title="Mark all read" variant="secondary" onPress={markAllRead} style={{ flex: 1 }} />
       </View>
 
@@ -47,7 +47,7 @@ export function NotificationsScreen() {
         title="Clear notifications"
         variant="danger"
         onPress={() =>
-          Alert.alert("Clear all?", "This removes all notifications from local storage.", [
+          Alert.alert("Clear all?", "This will delete all your notifications.", [
             { text: "Cancel", style: "cancel" },
             { text: "Clear", style: "destructive", onPress: clearAllNotifications },
           ])

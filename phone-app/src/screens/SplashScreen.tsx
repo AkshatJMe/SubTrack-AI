@@ -47,7 +47,7 @@ export function SplashScreen() {
 
       <ActivityIndicator size="small" color={colors.primary2} />
       <MutedText style={{ marginTop: 8 }}>
-        {isBootstrapping ? "Loading your local data…" : "Starting…"}
+        {isBootstrapping ? "Loading your account…" : "Starting…"}
       </MutedText>
     </View>
   );

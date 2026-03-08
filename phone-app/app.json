@@ -4,17 +4,28 @@
     "slug": "subtrack-ai-smart-subscription-manager",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B1220"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.subtrack.ai",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0B1220"
-      }
+      },
+      "package": "com.subtrack.ai",
+      "versionCode": 1
     },
     "web": {
       "bundler": "metro"
@@ -22,6 +33,11 @@
     "plugins": [
       "expo-asset",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "9557ced6-8aa8-4217-935f-231c4ce55b84"
+      }
+    }
   }
 }

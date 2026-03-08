@@ -36,7 +36,7 @@ export function ProfileScreen() {
   const clearAppData = async () => {
     Alert.alert(
       "Clear app data?",
-      "This resets subscriptions, notifications, and preferences (stored locally). Your account stays signed in.",
+      "This will reset all your subscriptions, notifications, and preferences. Your account will stay signed in.",
       [
         { text: "Cancel", style: "cancel" },
         {
@@ -53,7 +53,7 @@ export function ProfileScreen() {
             await setJson(STORAGE_KEYS.notifications, defaultNotifications);
             await setJson(STORAGE_KEYS.preferences, defaultPreferences);
 
-            Alert.alert("Reset complete", "Local demo data was restored.");
+            Alert.alert("Reset complete", "Data was restored.");
           },
         },
       ]
@@ -64,7 +64,6 @@ export function ProfileScreen() {
     <Screen scroll contentContainerStyle={{ gap: 14 }}>
       <View style={{ gap: 6 }}>
         <AppText style={{ fontSize: 22, fontWeight: "900" }}>Profile</AppText>
-        <MutedText>Preferences and local demo controls.</MutedText>
       </View>
 
       <Card>
@@ -80,7 +79,7 @@ export function ProfileScreen() {
           <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
             <View style={{ flex: 1, paddingRight: 10 }}>
               <AppText style={{ fontWeight: "800" }}>Renewal reminders</AppText>
-              <MutedText>Generate local reminders for renewals within 7 days.</MutedText>
+              <MutedText>Send reminders for renewals within 7 days.</MutedText>
             </View>
             <Switch
               value={preferences.renewalReminders}
@@ -143,7 +142,7 @@ export function ProfileScreen() {
       <Card>
         <AppText style={{ fontSize: 16, fontWeight: "900" }}>Danger zone</AppText>
         <MutedText style={{ marginTop: 6 }}>
-          These actions affect local storage only (demo mode).
+          These actions are permanent and cannot be undone.
         </MutedText>
 
         <View style={{ marginTop: 12, gap: 10 }}>
@@ -152,7 +151,7 @@ export function ProfileScreen() {
             title="Logout"
             variant="secondary"
             onPress={() =>
-              Alert.alert("Logout?", "This clears local storage and returns to login.", [
+              Alert.alert("Logout?", "You'll need to sign in again to access your account.", [
                 { text: "Cancel", style: "cancel" },
                 { text: "Logout", style: "destructive", onPress: () => void logout() },
               ])

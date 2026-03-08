@@ -20,9 +20,11 @@ export function TextField({
   keyboardType?: "default" | "email-address" | "numeric";
   error?: string | null;
 }) {
+  const [focused, setFocused] = React.useState(false);
+
   return (
     <View style={{ gap: 8 }}>
-      <AppText style={{ fontWeight: "700" }}>{label}</AppText>
+      <AppText style={{ fontWeight: "800", fontSize: 14 }}>{label}</AppText>
       <TextInput
         value={value}
         onChangeText={onChangeText}
@@ -32,17 +34,21 @@ export function TextField({
         keyboardType={keyboardType}
         autoCapitalize="none"
         autoCorrect={false}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
         style={{
           backgroundColor: colors.card2,
-          borderColor: error ? colors.danger : colors.border,
-          borderWidth: 1,
+          borderColor: error ? colors.danger : focused ? colors.primary : colors.border,
+          borderWidth: 1.5,
           borderRadius: 14,
-          paddingHorizontal: 12,
-          paddingVertical: 12,
+          paddingHorizontal: 14,
+          paddingVertical: 13,
           color: colors.text,
+          fontSize: 15,
+          fontWeight: "500",
         }}
       />
-      {error ? <MutedText style={{ color: colors.danger }}>{error}</MutedText> : null}
+      {error ? <MutedText style={{ color: colors.danger, fontSize: 12, fontWeight: "600" }}>{error}</MutedText> : null}
     </View>
   );
 }

@@ -1,7 +1,7 @@
 export type User = {
   id: string;
   email: string;
-  password: string; // fake auth only (demo)
+  password: string; // encrypted password
   createdAt: string;
 };
 

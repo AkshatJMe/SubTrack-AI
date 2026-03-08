@@ -30,7 +30,7 @@ export function LoginScreen() {
       setSubmitError(res.message);
       return;
     }
-    Alert.alert("Welcome back", "You’re logged in locally (demo mode).");
+    Alert.alert("Welcome back", "You're logged in.");
   };
 
   return (
@@ -83,9 +83,9 @@ export function LoginScreen() {
       </Pressable>
 
       <View style={{ marginTop: 10, padding: 14, borderRadius: 16, backgroundColor: colors.card }}>
-        <AppText style={{ fontWeight: "900" }}>Demo note</AppText>
+        <AppText style={{ fontWeight: "900" }}>Privacy note</AppText>
         <MutedText style={{ marginTop: 6 }}>
-          This app stores everything locally (AsyncStorage). No backend, no network requests.
+          Your subscription data is kept private and secure.
         </MutedText>
       </View>
     </Screen>

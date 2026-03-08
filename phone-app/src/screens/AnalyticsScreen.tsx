@@ -53,7 +53,6 @@ export function AnalyticsScreen() {
     <Screen scroll contentContainerStyle={{ gap: 14 }}>
       <View style={{ gap: 6 }}>
         <AppText style={{ fontSize: 22, fontWeight: "900" }}>Analytics</AppText>
-        <MutedText>Charts are computed locally (demo mode).</MutedText>
       </View>
 
       <Card>

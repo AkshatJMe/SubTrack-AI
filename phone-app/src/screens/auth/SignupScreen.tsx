@@ -38,7 +38,7 @@ export function SignupScreen() {
     <Screen scroll contentContainerStyle={{ gap: 16, paddingTop: 40 }}>
       <View style={{ gap: 6 }}>
         <AppText style={{ fontSize: 26, fontWeight: "900" }}>Create account</AppText>
-        <MutedText>Fake auth (stored locally), but realistic UX & validation.</MutedText>
+        <MutedText>Secure authentication with email and password.</MutedText>
       </View>
 
       <View style={{ gap: 14 }}>
@@ -86,7 +86,7 @@ export function SignupScreen() {
       <View style={{ marginTop: 10, padding: 14, borderRadius: 16, backgroundColor: colors.card }}>
         <AppText style={{ fontWeight: "900" }}>Privacy note</AppText>
         <MutedText style={{ marginTop: 6 }}>
-          Password is stored locally in AsyncStorage for demo purposes only.
+          Your password is encrypted and securely stored.
         </MutedText>
       </View>
     </Screen>

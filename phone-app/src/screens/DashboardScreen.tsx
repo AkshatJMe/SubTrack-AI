@@ -24,7 +24,6 @@ export function DashboardScreen() {
     <Screen scroll contentContainerStyle={{ gap: 14 }}>
       <View style={{ gap: 6 }}>
         <AppText style={{ fontSize: 22, fontWeight: "900" }}>Overview</AppText>
-        <MutedText>All insights are computed locally (demo mode).</MutedText>
       </View>
 
       <View style={{ flexDirection: "row", gap: 12 }}>
