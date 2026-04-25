@@ -14,6 +14,7 @@ CORE SERVICES:
 4. SUBSCRIPTION SERVICE - Subscription CRUD, billing cycles, analytics, renewals
 5. NOTIFICATION SERVICE - Email, in-app, push notifications and alerts
 6. PHONE APP (React Native) - Mobile UI for auth, subscriptions, dashboard, profiles
+7. LLM Service (Python flase) - processing mobile msg to automatically put of DB
 
 KEY FEATURES:
 ✓ Microservices Architecture
