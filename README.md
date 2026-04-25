@@ -33,7 +33,7 @@ The system is built as a distributed application with dedicated services for aut
 
 ![Flowchart / Activity Diagram](image/flowchartactivitydiagram.png)
 
-![ER Diagram](image/er diagram.png)
+![ER Diagram](image/erdiagram.png)
 
 ## Services
 
