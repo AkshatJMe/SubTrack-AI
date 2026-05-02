@@ -91,6 +91,14 @@ The system is built as a distributed application with dedicated services for aut
 
 ![Profile](image/ScreenShots/profile.jpg)
 
+## Email Notification Screenshots
+
+These screenshots show the emails sent by the project, including the welcome email and reminder email.
+
+![Welcome Email](image/mail/welcomemail.png)
+
+![Reminder Email](image/mail/remainder.png)
+
 ## Getting Started
 
 ### Prerequisites
